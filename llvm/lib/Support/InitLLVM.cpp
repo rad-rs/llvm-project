@@ -89,6 +89,7 @@ InitLLVM::InitLLVM(int &Argc, const char **&Argv,
                         NeedsPOSIXUtilitySignalHandling);
 #endif
 
+#if !defined(__wasi__)
   if (InstallPipeSignalExitHandler)
     // The pipe signal handler must be installed before any other handlers are
     // registered. This is because the Unix \ref RegisterHandlers function does
@@ -102,6 +103,7 @@ InitLLVM::InitLLVM(int &Argc, const char **&Argv,
   sys::PrintStackTraceOnErrorSignal(Argv[0]);
   install_out_of_memory_new_handler();
   RaiseLimits();
+#endif
 
 #ifdef __MVS__
 

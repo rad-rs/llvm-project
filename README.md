@@ -1,14 +1,25 @@
-# Rust's fork of LLVM
+# rust-llvm-wasi
 
-This repository is a Rust-specific fork of LLVM. This is used as a submodule in
-the https://github.com/rust-lang/rust repository. The Rust repository is always
-pinned to a branch of this repository, and the `master` branch of this
-repository is not used.
+LLVM and LLD, patched so they can be built to run on a WASI host
+(`wasm32-wasip1-threads`), for building a WebAssembly-hosted `rustc`. It is the
+LLVM submodule of [rad-rs/rust-wasi](https://github.com/rad-rs/rust-wasi); see
+[rad-rs/wasm-rustc-windows](https://github.com/rad-rs/wasm-rustc-windows) for
+how the pieces fit together.
 
-Despite this being a "fork" it's more of just a place where we can easily tweak
-the LLVM source for Rust's own build. All patches should by default go upstream
-first, and then we can cherry-pick them onto our branches if necessary.
+**This is not a general-purpose LLVM.** For ordinary use, build
+[llvm/llvm-project](https://github.com/llvm/llvm-project) or Rust's own fork,
+[rust-lang/llvm-project](https://github.com/rust-lang/llvm-project).
 
-To learn more about updating LLVM in the Rust compiler, consult the
-[documentation for doing so in
-`rustc-guide`](https://rustc-dev-guide.rust-lang.org/backend/updating-llvm.html)
+## Credits
+
+- **Catherine and the YoWASP project**, who wrote the WASI patch this is based
+  on; their commit is the first one on `wasi-host/23.1`, with her authorship
+  preserved. YoWASP now lives on Codeberg:
+  <https://codeberg.org/YoWASP/llvm-project>.
+- **The Rust project**, for the LLVM fork this builds on, and **the LLVM
+  project**.
+
+## Licence
+
+As LLVM: Apache License v2.0 with LLVM Exceptions. See `LICENSE.TXT` on the
+patch branch.

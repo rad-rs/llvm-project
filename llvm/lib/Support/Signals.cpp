@@ -359,8 +359,8 @@ static bool printMarkupStackTrace(StringRef Argv0, void **StackTrace, int Depth,
 // Include the platform-specific parts of this class.
 #if defined(__wasi__)
 // WASI does not have signals.
-void llvm::sys::AddSignalHandler(sys::SignalHandlerCallback FnPtr,
-                                 void *Cookie) {}
+void llvm::sys::AddSignalHandler(sys::SignalHandlerCallback FnPtr, void *Cookie,
+                                 bool NeedsPOSIXUtilitySignalHandling) {}
 void llvm::sys::RunInterruptHandlers() {}
 void sys::CleanupOnSignal(uintptr_t Context) {}
 bool llvm::sys::RemoveFileOnSignal(StringRef Filename, std::string *ErrMsg) {
